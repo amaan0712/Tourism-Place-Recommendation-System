@@ -1,10 +1,10 @@
-# 🗺️ Tourism Place Recommendation System
+#  Tourism Place Recommendation System
 
 A deep learning-based collaborative filtering system that recommends tourism places to users based on their past ratings. The model uses a **Neural Collaborative Filtering (NCF)** architecture — combining Generalized Matrix Factorization (GMF) and a Multi-Layer Perceptron (MLP) — to learn rich user-place interaction patterns.
 
 ---
 
-## 📌 Table of Contents
+##  Table of Contents
 
 - [What It Does](#what-it-does)
 - [Overview](#overview)
