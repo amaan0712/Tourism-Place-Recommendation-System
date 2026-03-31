@@ -6,6 +6,7 @@ A deep learning-based collaborative filtering system that recommends tourism pla
 
 ## 📌 Table of Contents
 
+- [What It Does](#what-it-does)
 - [Overview](#overview)
 - [Dataset](#dataset)
 - [Project Structure](#project-structure)
@@ -15,6 +16,34 @@ A deep learning-based collaborative filtering system that recommends tourism pla
 - [Model Architecture](#model-architecture)
 - [Configuration](#configuration)
 - [Output](#output)
+
+---
+
+## What It Does
+
+Imagine you've visited a few tourist spots and rated them — some you loved, some not so much. This system looks at those ratings and figures out, *"Based on what this person enjoyed, which places haven't they been to yet that they'd probably love?"* Then it hands you a ranked list of those places.
+
+That's the core idea: **personalized tourism recommendations powered by deep learning.**
+
+Here's how it works end to end:
+
+**1. It learns from collective behaviour.**
+The model doesn't just look at your ratings in isolation. It studies the rating patterns of *all* users together — a technique called collaborative filtering. If users who liked the same places as you also consistently enjoyed a particular destination you haven't visited, the model learns to recommend that place to you. No manual rules, no hardcoded logic — the model figures this out on its own from the data.
+
+**2. It represents users and places as learned identities.**
+Each user and each place gets converted into a compact list of numbers called an **embedding** — think of it as a personality profile that the model learns during training. Similar users end up with similar profiles. Similar places do too. The model then uses these profiles to predict how well a user and a place will "match."
+
+**3. It uses two strategies simultaneously.**
+The architecture runs two parallel approaches and combines them:
+- **GMF (Generalized Matrix Factorization)** — a linear method that looks at direct alignment between a user's profile and a place's profile.
+- **MLP (Multi-Layer Perceptron)** — a non-linear neural network that captures more subtle and complex patterns in the interaction.
+
+Merging both gives better predictions than either approach alone.
+
+**4. It outputs a ranked recommendation list.**
+For any given user, the model scores every place they haven't rated yet, sorts them by predicted enjoyment, and returns the top N results — complete with place name, category (e.g. Nature, Cultural, Theme Park), and city.
+
+**In short:** feed it a user ID, get back a personalised list of tourism spots they're most likely to enjoy — ranked by predicted rating.
 
 ---
 
