@@ -156,35 +156,6 @@ The notebook will:
 
 ---
 
-## Model Architecture
-
-The model is a **Neural Collaborative Filtering (NCF)** network with two parallel branches that are fused before the final prediction:
-
-```
-User Input ──► GMF User Embedding ─┐
-                                    ├─► Element-wise Multiply ──► GMF Output ─┐
-Place Input ──► GMF Place Embedding ┘                                         │
-                                                                               ├─► Concatenate ──► sigmoid ──► Rating
-User Input ──► MLP User Embedding ─┐                                          │
-                                    ├─► Concatenate ──► Dense(256) ──►        │
-Place Input ──► MLP Place Embedding ┘   BatchNorm + Dropout                   │
-                                    ──► Dense(128) ──► Dense(64) ──►          │
-                                        Dense(32) ──► MLP Output ─────────────┘
-```
-
-**Key components:**
-
-| Component | Detail |
-|---|---|
-| GMF branch | Embedding dim = `embeddingDim // 2`, element-wise product |
-| MLP branch | Embedding dim = `embeddingDim`, Dense layers: 256 → 128 → 64 → 32 |
-| Regularization | L2 on embeddings, BatchNorm + Dropout (0.3, 0.25, 0.2) |
-| Output activation | Sigmoid (predicts normalized rating in [0, 1]) |
-| Loss | Mean Squared Error (MSE) |
-| Optimizer | Adam |
-
----
-
 ## Configuration
 
 All key hyperparameters are defined as variables near the top of the notebook and can be changed without touching the model code:
